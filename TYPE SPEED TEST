@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Typing Speed Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+    #quote {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+    #input-text {
+      width: 80%;
+      height: 100px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    #result {
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Typing Speed Test</h1>
+  <p>Type the following text:</p>
+  <p id="quote">Follow your Heart better than Brain</p>
+  <textarea id="input-text" placeholder="Type here...."></textarea>
+  <button onclick="calculateSpeed()">Calculate Speed</button>
+  <p id="result"></p>
+
+  <script>
+    function calculateSpeed() {
+      const quoteText = "Follow your Heart better than Brain";
+      const enteredText = document.getElementById('input-text').value.trim();
+      const quoteWords = quoteText.split(' ');
+      const enteredWords = enteredText.split(' ');
+
+      let correctWords = 0;
+      for (let i = 0; i < quoteWords.length; i++) {
+        if (quoteWords[i] === enteredWords[i]) {
+          correctWords++;
+        }
+      }
+
+      const accuracy = ((correctWords / quoteWords.length) * 100).toFixed(2);
+      const timeTaken = 60; // Time in seconds for the test
+      const wordsPerMinute = Math.round((correctWords / (timeTaken / 60)));
+
+      const result = `Your typing speed: ${wordsPerMinute} WPM (Accuracy: ${accuracy}%)`;
+      document.getElementById('result').innerText = result;
+    }
+  </script>
+</body>
+</html>
