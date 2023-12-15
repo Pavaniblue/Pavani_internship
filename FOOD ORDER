@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Food Order</title>
+  <!-- You can link your CSS file for styling here -->
+  <!-- <link rel="stylesheet" href="styles.css"> -->
+</head>
+<body>
+
+  <header>
+    <h1>Welcome to Food Order</h1>
+    
+  </header>
+
+  <main>
+    <section id="menu">
+      <h2>Menu</h2>
+      <div class="menu-item">
+        <h3>Pizza</h3>
+       
+        <p>Price: $10</p>
+        <button onclick="addToCart('Pizza', 10)">Add to Cart</button>
+      </div>
+
+      <div class="menu-item">
+        <h3>Burger</h3>
+        
+        <p>Price: $8</p>
+        <button onclick="addToCart('Burger', 8)">Add to Cart</button>
+      </div>
+
+      <div class="menu-item">
+        <h3>French Fries</h3>
+        <p>Price: $3</p>
+        <button onclick="addToCart('French Fries',3)">Add to cart</button>
+      </div>
+
+      <div class="menu-item">
+        <h3>Chicken Fried rice</h3>
+        <p>Price: $12</p>
+        <button onclick="addToCart('Chicken Fried rice',12)">Add to cart</button>
+      </div>
+
+      <div class="menu-item">
+        <h3>Ice Cream</h3>
+        <p>Price: $5</p>
+        <button onclick="addToCart('Ice Cream',5)">Add to cart</button>
+      </div>
+      <!-- Add more menu items as needed -->
+
+      <div id="CART">
+        <h3>Cart</h3>
+        <ul id="cart-items">
+          <!-- Cart items will be displayed here -->
+        </ul>
+        <p>Total: $<span id="total">0</span></p>
+        <button onclick="checkout()">Checkout</button>
+      </div>
+    </section>
+
+    <!-- You can add more sections like 'About Us', 'Contact' etc. -->
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Food Order</p>
+  </footer>
+
+  <script>
+    let cartItems = [];
+    let total = 0;
+
+    function addToCart(item, price) {
+      cartItems.push({ item, price });
+      total += price;
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartList = document.getElementById('cart-items');
+      const totalElement = document.getElementById('total');
+
+      cartList.innerHTML = '';
+      cartItems.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.item} - $${item.price}`;
+        cartList.appendChild(li);
+      });
+
+      totalElement.textContent = total;
+    }
+
+    function checkout() {
+      // Implement checkout logic here (e.g., send order to server)
+      alert('Thank you for your order!');
+      cartItems = [];
+      total = 0;
+      updateCart();
+    }
+  </script>
+</body>
+</html>
